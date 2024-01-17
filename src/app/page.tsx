@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { migrateTurso } from "./lib/db";
 
 export default async function Home() {
-
-  migrateTurso();
-
   return (
     <main>
       Henlo
