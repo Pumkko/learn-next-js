@@ -1,0 +1,1 @@
+ALTER TABLE Characters ADD `currentDimension` text DEFAULT 'C137' NOT NULL;
