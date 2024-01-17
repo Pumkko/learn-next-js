@@ -1,5 +1,5 @@
 CREATE TABLE `Characters` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`origin` text NOT NULL
 );
