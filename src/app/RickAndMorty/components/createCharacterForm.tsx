@@ -18,9 +18,6 @@ export function CreateCharacterForm() {
             <p>
                 {state?.errors}
             </p>
-            <div>
-                {state?.createdIds?.map(i => <p key={i.insertedId}>{i.insertedId}</p>)}
-            </div>
             <button type="submit">Create</button>
         </form>
     </div>

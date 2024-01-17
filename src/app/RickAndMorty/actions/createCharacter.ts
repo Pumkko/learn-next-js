@@ -4,6 +4,8 @@ import { db } from "@/app/lib/db"
 import { characters } from "../../../../db-schema/schema"
 import { v4 } from 'uuid'
 import * as v from 'valibot'
+import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
 
 const createCharacterSchema = v.object({
     name: v.nonNullish(v.string('name is not a string', [v.minLength(1, 'name is too short')]), 'name is nullish'),
@@ -24,12 +26,12 @@ export async function createCharacter(prevState: any, formData: FormData) {
         }
     }
 
-    const ids = await db.insert(characters).values({
+    await db.insert(characters).values({
         name: parsedFormData.output.name,
         origin: parsedFormData.output.origin,
         id: v4()
-    }).returning({ insertedId: characters.id });
-    return {
-        createdIds: ids
-    };
+    });
+
+    revalidatePath('/');
+    redirect('/');
 }
