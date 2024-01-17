@@ -1,32 +1,17 @@
-export interface Result {
-  results: Character[];
-}
-
-export interface Character {
-  id: number;
-  name: string;
-}
-
-async function getWorking() {
-  const res = await fetch("https://rickandmortyapi.com/api/character");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch working")
-  }
-
-  return res.json() as Promise<Result>;
-}
+import Link from "next/link";
+import { migrateTurso } from "./lib/db";
 
 export default async function Home() {
 
-  const data = await getWorking();
+  migrateTurso();
 
   return (
     <main>
       Henlo
-      {data.results.map(d => <div key={d.id}>
-        {d.name}
-      </div>)}
+      <div>
+        <Link href={"/Counter"}>Counter</Link>
+        <Link href={"/RickAndMorty"}>Rick And Morty</Link>
+      </div>
     </main>
   )
 }
